@@ -8,7 +8,7 @@ namespace API_CHARE_SCHARNO.Models
 {
     public static class BD
     {
-        private static string _connectionString = @"Server=A-PHZ2-AMI-019; DataBase=BDEscuelas;Trusted_Connection=True;";
+        private static string _connectionString = @"Server=A-PHZ2-CIDI-050; DataBase=Corki;Trusted_Connection=True;";
 
         public static List<Docente> GetDocentes()
         {
