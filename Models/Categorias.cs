@@ -11,6 +11,5 @@ namespace API_CHARE_SCHARNO.Models
 
         private int _Año;
         public int Año { get { return _Año;} set { _Año = value;}}
-        
     }
 }

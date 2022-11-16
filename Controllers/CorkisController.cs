@@ -9,7 +9,7 @@ public class CorkisController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        List<Docente> lista = BD.GetDocentes();
+        List<Skins> lista = BD.GetSkins();
         return Ok(lista);
     }
 
@@ -20,7 +20,7 @@ public class CorkisController : ControllerBase
         {
             return BadRequest();
         }
-        Docente x = BD.GetDocenteById(id);
+        Skins x = BD.GetSkinById(id);
         if(x == null)
         {
             return NotFound();
@@ -29,28 +29,45 @@ public class CorkisController : ControllerBase
    }
 
    [HttpPost]
-    public IActionResult Post(Docente x)
+    public IActionResult Post(Skins x)
     {
-        if(x.NombreDocente == null || x.NombreDocente == "")
+        if(x.NombreSkin == null || x.NombreSkin == "")
         {
             return BadRequest();
         }
-        BD.InsertDocente(x);
+        BD.InsertSkin(x);
         return Ok();
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id){
+    public IActionResult Delete(int id)
+    {
         if(id < 1)
         {
             return BadRequest();
         }
-    Docente x = BD.GetDocenteById(id);
+        Skins x = BD.GetSkinById(id);
         if(x == null)
         {
             return NotFound();
         }
-    BD.DeleteDocenteById(id);
-    return Ok();
+        BD.DeleteSkinById(id);
+        return Ok();
+   }
+
+   [HttpPut("{id}")]
+   public IActionResult Update(int id, Materia cate)
+   {
+        if(id < 1)
+        {
+            return BadRequest();
+        }
+        cate = BD.GetCateById(id);
+        if(cate is null)
+        {
+            return NotFound();
+        }
+        BD.Update(cate);
+        return Ok();
    }
 }

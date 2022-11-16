@@ -8,32 +8,32 @@ namespace API_CHARE_SCHARNO.Models
 {
     public static class BD
     {
-        private static string _connectionString = @"Server=A-PHZ2-CIDI-050; DataBase=Corki;Trusted_Connection=True;";
-
-        public static List<Docente> GetDocentes()
+        private static string _connectionString = @"Server=A-PHZ2-AMI-019; DataBase=Corki;Trusted_Connection=True;";
+        static List<Materia> lista { get; }
+        public static List<Skins> GetSkins()
         {
-            List<Docente>? Lista = null;
+            List<Skins>? Lista = null;
             string SQL = "SELECT * FROM Skins"; 
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
-                Lista = db.Query<Docente>(SQL).ToList(); 
+                Lista = db.Query<Skins>(SQL).ToList(); 
             } 
             return Lista;
         }
-        public static Docente GetDocenteById(int Id)
+        public static Skins GetSkinById(int Id)
         {
-            Docente? item = null;
+            Skins? item = null;
             string SQL = "SELECT * FROM Skins D INNER JOIN Categorias M ON D.IdMateria=M.IdMateria"; 
-            SQL += " WHERE IdDocente=@pId"; 
+            SQL += " WHERE IdSkin=@pId"; 
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
-                item = db.QueryFirstOrDefault<Docente>(SQL, new { pId = Id }); 
+                item = db.QueryFirstOrDefault<Skins>(SQL, new { pId = Id }); 
             } 
             return item;
         }
-        public static void DeleteDocenteById(int Id)
+        public static void DeleteSkinById(int Id)
         {
-            string SQL = "DELETE FROM Skins WHERE IdDocente=@pId"; 
+            string SQL = "DELETE FROM Skins WHERE IdSkin=@pId"; 
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(SQL, new { pId = Id }); 
@@ -49,23 +49,38 @@ namespace API_CHARE_SCHARNO.Models
             } 
             return Lista;
         }
-        public static void InsertDocente(Docente item)
+        public static void InsertSkin(Skins item)
         {
-            string SQL = "INSERT INTO Skins(NombreDocente, FotoDocente, AntiguedadDocente, IdMateria)";
-            SQL += " VALUES (@pNombreDocente, @pFotoDocente, @pAntiguedadDocente, @pIdMateria) "; 
+            string SQL = "INSERT INTO Skins(NombreSkin, FotoSkin, AntiguedadSkin, IdMateria)";
+            SQL += " VALUES (@pNombreSkin, @pFotoSkin, @pAntiguedadSkin, @pIdMateria) "; 
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(SQL, new {
-                    pNombreDocente = item.NombreDocente,
-                    pFotoDocente = item.FotoDocente,
-                    pAntiguedadDocente = item.AntiguedadDocente,
+                    pNombreSkin = item.NombreSkin,
+                    pFotoSkin = item.FotoSkin,
+                    pAntiguedadSkin = item.AntiguedadSkin,
                     pIdMateria = item.IdMateria
                 }); 
             }   
         }
-        public static void InsertarEleccion()
+        public static Materia GetCateById(int Id)
         {
+            Materia? item = null;
+            string SQL = "SELECT * FROM Categorias D INNER JOIN Categorias M ON D.IdMateria=M.IdMateria"; 
+            SQL += " WHERE IdMateria=@pId"; 
+            using(SqlConnection db = new SqlConnection(_connectionString))
+            {
+                item = db.QueryFirstOrDefault<Materia>(SQL, new { pId = Id }); 
+            } 
+            return item;
+        }
+        public static void Update(Materia cate)
+        {
+            var index = lista.FindIndex(p => p.IdMateria == cate.IdMateria);
+            if(index == -1)
+                return;
 
+            lista[index] = cate;
         }
     }
 }
