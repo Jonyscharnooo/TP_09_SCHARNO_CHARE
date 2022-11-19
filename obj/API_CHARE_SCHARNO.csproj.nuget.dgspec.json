@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\47069691\\Desktop\\TP_09_SCHARNO_CHARE\\TP_09_SCHARNO_CHARE\\API_CHARE_SCHARNO.csproj": {}
+    "C:\\Users\\cjsch\\Desktop\\TP_09_SCHARNO_CHARE\\API_CHARE_SCHARNO.csproj": {}
   },
   "projects": {
-    "C:\\Users\\47069691\\Desktop\\TP_09_SCHARNO_CHARE\\TP_09_SCHARNO_CHARE\\API_CHARE_SCHARNO.csproj": {
+    "C:\\Users\\cjsch\\Desktop\\TP_09_SCHARNO_CHARE\\API_CHARE_SCHARNO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\47069691\\Desktop\\TP_09_SCHARNO_CHARE\\TP_09_SCHARNO_CHARE\\API_CHARE_SCHARNO.csproj",
+        "projectUniqueName": "C:\\Users\\cjsch\\Desktop\\TP_09_SCHARNO_CHARE\\API_CHARE_SCHARNO.csproj",
         "projectName": "API_CHARE_SCHARNO",
-        "projectPath": "C:\\Users\\47069691\\Desktop\\TP_09_SCHARNO_CHARE\\TP_09_SCHARNO_CHARE\\API_CHARE_SCHARNO.csproj",
-        "packagesPath": "C:\\Users\\47069691\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\47069691\\Desktop\\TP_09_SCHARNO_CHARE\\TP_09_SCHARNO_CHARE\\obj\\",
+        "projectPath": "C:\\Users\\cjsch\\Desktop\\TP_09_SCHARNO_CHARE\\API_CHARE_SCHARNO.csproj",
+        "packagesPath": "C:\\Users\\cjsch\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cjsch\\Desktop\\TP_09_SCHARNO_CHARE\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\47069691\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\cjsch\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -75,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

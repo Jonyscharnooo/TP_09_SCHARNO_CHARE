@@ -56,18 +56,46 @@ public class CorkisController : ControllerBase
    }
 
    [HttpPut("{id}")]
-   public IActionResult Update(int id, Materia cate)
+   public IActionResult Update(int id, Skins skn)
    {
         if(id < 1)
         {
             return BadRequest();
         }
-        cate = BD.GetCateById(id);
-        if(cate is null)
+        Skins sknss= BD.GetSkinById(id);
+        if(sknss == null)
         {
             return NotFound();
         }
-        BD.Update(cate);
+        BD.UpdateSkin(id, skn);
         return Ok();
    }
+
+   [HttpPatch("(id)")]
+    public IActionResult Patch(int id, Skins nueva)
+    {
+        if(id < 1)
+        {
+            return BadRequest();
+        }
+        Skins vieja = BD.GetSkinById(id);
+        if(nueva.NombreSkin != null && nueva.NombreSkin != vieja.NombreSkin)
+        {
+            vieja.NombreSkin = nueva.NombreSkin;
+        }
+        if(nueva.FotoSkin != null && nueva.FotoSkin != vieja.FotoSkin)
+        {
+            vieja.FotoSkin = nueva.FotoSkin;
+        }
+        if(nueva.IdMateria != null && nueva.IdMateria != vieja.IdMateria)
+        {
+            vieja.IdMateria = nueva.IdMateria;
+        }
+        if(nueva.AntiguedadSkin != null && nueva.AntiguedadSkin != vieja.AntiguedadSkin)
+        {
+            vieja.AntiguedadSkin = nueva.AntiguedadSkin;
+        }
+        BD.UpdateSkin(id, vieja);
+        return Ok();
+    }
 }

@@ -8,8 +8,7 @@ namespace API_CHARE_SCHARNO.Models
 {
     public static class BD
     {
-        private static string _connectionString = @"Server=A-PHZ2-AMI-019; DataBase=Corki;Trusted_Connection=True;";
-        static List<Materia> lista { get; }
+        private static string _connectionString = @"Server=DESKTOP-3G0NGRC\SQLEXPRESS; DataBase=Corki;Trusted_Connection=True;";
         public static List<Skins> GetSkins()
         {
             List<Skins>? Lista = null;
@@ -23,7 +22,7 @@ namespace API_CHARE_SCHARNO.Models
         public static Skins GetSkinById(int Id)
         {
             Skins? item = null;
-            string SQL = "SELECT * FROM Skins D INNER JOIN Categorias M ON D.IdMateria=M.IdMateria"; 
+            string SQL = "SELECT * FROM Skins D INNER JOIN Categorias M ON D.IdCategoria=M.IdCategoria"; 
             SQL += " WHERE IdSkin=@pId"; 
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
@@ -39,48 +38,36 @@ namespace API_CHARE_SCHARNO.Models
                 db.Execute(SQL, new { pId = Id }); 
             } 
         }
-        public static List<Materia> GetCategorias()
+        public static List<Categorias> GetCategorias()
         {
-            List<Materia>? Lista = null;
+            List<Categorias>? Lista = null;
             string SQL = "SELECT * FROM Categorias"; 
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
-                Lista = db.Query<Materia>(SQL).ToList(); 
+                Lista = db.Query<Categorias>(SQL).ToList(); 
             } 
             return Lista;
         }
         public static void InsertSkin(Skins item)
         {
-            string SQL = "INSERT INTO Skins(NombreSkin, FotoSkin, AntiguedadSkin, IdMateria)";
-            SQL += " VALUES (@pNombreSkin, @pFotoSkin, @pAntiguedadSkin, @pIdMateria) "; 
+            string SQL = "INSERT INTO Skins(NombreSkin, FotoSkin, AntiguedadSkin)";
+            SQL += " VALUES (@pNombreSkin, @pFotoSkin, @pAntiguedadSkin) "; 
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(SQL, new {
                     pNombreSkin = item.NombreSkin,
                     pFotoSkin = item.FotoSkin,
-                    pAntiguedadSkin = item.AntiguedadSkin,
-                    pIdMateria = item.IdMateria
+                    pAntiguedadSkin = item.AntiguedadSkin
                 }); 
             }   
         }
-        public static Materia GetCateById(int Id)
+        public static void UpdateSkin(int id, Skins item)
         {
-            Materia? item = null;
-            string SQL = "SELECT * FROM Categorias D INNER JOIN Categorias M ON D.IdMateria=M.IdMateria"; 
-            SQL += " WHERE IdMateria=@pId"; 
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
-                item = db.QueryFirstOrDefault<Materia>(SQL, new { pId = Id }); 
-            } 
-            return item;
-        }
-        public static void Update(Materia cate)
-        {
-            var index = lista.FindIndex(p => p.IdMateria == cate.IdMateria);
-            if(index == -1)
-                return;
-
-            lista[index] = cate;
+                db.Execute("UPDATE Skins SET NombreSkin = @pNombreSkin, FotoSkin =  @pFotoSkin, AntiguedadSkin =  @pAntiguedadSkin WHERE IdSkin = @pId", 
+                new { pId = id, pNombreSkin = item.NombreSkin, pFotoSkin = item.FotoSkin, pAntiguedadSkin = item.AntiguedadSkin }); 
+            }   
         }
     }
 }

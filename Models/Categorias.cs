@@ -1,15 +1,15 @@
 using System;
 namespace API_CHARE_SCHARNO.Models
 {
-    public class Materia
+    public class Categorias
     {
-        private int _IdMateria;
+        private int _IdCategoria;
         public int IdMateria { get { return _IdMateria;} set { _IdMateria = value;}}
 
-        private string? _NombreMateria;
-        public string? NombreMateria { get { return _NombreMateria;} set { _NombreMateria = value;}}
+        private string? _NombreCategoria;
+        public string? NombreCategoria { get { return _NombreCategoria;} set { _NombreCategoria = value;}}
 
-        private int _Año;
-        public int Año { get { return _Año;} set { _Año = value;}}
+        private int _Precio;
+        public int Precio { get { return _Precio;} set { _Precio = value;}}
     }
 }
